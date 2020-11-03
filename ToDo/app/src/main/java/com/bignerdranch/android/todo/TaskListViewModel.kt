@@ -16,22 +16,12 @@ import java.util.*
 class TaskListViewModel :ViewModel() {
 
 
-    private val taskRepository=TaskRepository.get()
-    private val taskIdLiveData=MutableLiveData<UUID>()
+private val taskRepository=TaskRepository.get()
+    val taskListLiveData=taskRepository.getTasks()
 
-    var taskLiveData: LiveData<Task?> =
-        Transformations.switchMap(taskIdLiveData) { taskId ->
-            taskRepository.getCrime(crimeId)
-        }
+    fun addTasks(task:Task){
+        taskRepository.addTask(task)
 
-    val tasks= mutableListOf<Task>()
-    init{
-        for(i in 0 until 30){
-            val task=Task()
-            task.title="?"
-            task.isCompleted=false
-            tasks+=task
-        }
     }
 
     }
