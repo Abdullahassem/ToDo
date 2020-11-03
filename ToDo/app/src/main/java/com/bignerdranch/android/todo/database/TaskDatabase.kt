@@ -11,7 +11,7 @@ import com.bignerdranch.android.todo.Task
 
 private const val DATABASE_NAME = "task-database"
 
-@Database(entities = [ Task::class ], version=3)
+@Database(entities = [ Task::class ], version=1)
 @TypeConverters(TaskTypeConverters::class)
 abstract class TaskDatabase : RoomDatabase() {
 
@@ -23,11 +23,4 @@ val migration_1_2 = object : Migration(1, 2) {
             "ALTER TABLE Task ADD COLUMN extendedDescription TEXT NOT NULL DEFAULT ''"
         )
     }
-//}
-//val migration_2_3 = object : Migration(2, 3) {
-//    override fun migrate(database: SupportSQLiteDatabase) {
-//        database.execSQL(
-//            "ALTER TABLE Crime ADD COLUMN phoneNumber TEXT NOT NULL DEFAULT ''"
-//        )
-//    }
 }

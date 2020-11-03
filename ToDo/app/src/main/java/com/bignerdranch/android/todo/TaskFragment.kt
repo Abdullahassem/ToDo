@@ -11,6 +11,10 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import java.util.*
+
+private const val TAG="TaskFragment"
+private const val ARG_TASK_ID="task_id"
 
 class TaskFragment : Fragment() {
 
@@ -23,6 +27,7 @@ class TaskFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         task = Task()
+        val taskId:UUID=arguments?.getSerializable(ARG_TASK_ID)as UUID
 
     }
 
@@ -35,7 +40,7 @@ class TaskFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_task, container, false)
         dateButton = view.findViewById(R.id.task_date) as Button
         isCompletedCheck = view.findViewById(R.id.task_completed) as CheckBox
-        title = view.findViewById(R.id.tasl_title) as EditText
+        title = view.findViewById(R.id.task_title) as EditText
         dateButton.apply {
             text = task.dueDate.toString()
         }
@@ -77,6 +82,17 @@ class TaskFragment : Fragment() {
 
         }
 
+    }
+
+    companion object {
+        fun newInstance(taskId: UUID): TaskFragment {
+            val args = Bundle().apply {
+                putSerializable(ARG_TASK_ID, taskId)
+            }
+            return TaskFragment().apply {
+                arguments = args
+            }
+        }
     }
 
 }

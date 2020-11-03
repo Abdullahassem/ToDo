@@ -51,8 +51,8 @@ class TaskListFragment :Fragment(){
         taskRecycleView =
           view.findViewById(R.id.task_recycler_view)
         taskRecycleView.layoutManager = LinearLayoutManager(context)
+        taskRecycleView.adapter=adapter
 
-        updateUI()
 
         return view
     }
@@ -61,8 +61,7 @@ class TaskListFragment :Fragment(){
         super.onDetach()
         callbacks=null
     }
-private fun updateUI(){
-    val tasks=taskListViewModel.tasks
+private fun updateUI(tasks:List<Task>){
     adapter= TaskAdapter(tasks)
     taskRecycleView.adapter=adapter
 }

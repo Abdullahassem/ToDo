@@ -24,18 +24,23 @@ class TaskRepository private constructor(context: Context){
     private val executor=Executors.newSingleThreadExecutor()
     private val filesDir=context.applicationContext.filesDir
 
-    fun getCrimes(): LiveData<List<Task>> = taskDao.getTasks()
-    fun updateTask(task:Task){
-        executor.execute{
+
+    fun getTasks(): LiveData<List<Task>> = taskDao.getTasks()
+
+    fun getTask(id: UUID): LiveData<Task?> = taskDao.getTask(id)
+
+    fun updateTask(task: Task) {
+        executor.execute {
             taskDao.updateTask(task)
         }
     }
 
-    fun addTask(task:Task){
-        executor.execute{
+    fun addTask(task: Task) {
+        executor.execute {
             taskDao.addTask(task)
         }
     }
+//    fun getPhotoFile(task: Task): File = File(filesDir, task.photoFileName)
 
 
     companion object{
