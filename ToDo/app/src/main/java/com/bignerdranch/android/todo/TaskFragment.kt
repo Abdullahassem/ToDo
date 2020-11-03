@@ -1,16 +1,27 @@
 package com.bignerdranch.android.todo
 
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
+import android.icu.text.SimpleDateFormat
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
+import android.view.ViewTreeObserver
+import android.widget.*
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import java.io.File
 import java.util.*
 
 private const val TAG="TaskFragment"

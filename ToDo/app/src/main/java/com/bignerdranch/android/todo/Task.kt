@@ -12,5 +12,5 @@ data class Task(@PrimaryKey val id: UUID = UUID.randomUUID(),
                 var creationDate:Date=Date(),
                 var description:String="") {
 //    val photoFileName
-//        get() = "IMG_$id.jpg"
+//      get() = "IMG_$id.jpg"
 }

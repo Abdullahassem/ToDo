@@ -20,7 +20,7 @@ abstract class TaskDatabase : RoomDatabase() {
 val migration_1_2 = object : Migration(1, 2) {
     override fun migrate(database: SupportSQLiteDatabase) {
         database.execSQL(
-            "ALTER TABLE Task ADD COLUMN extendedDescription TEXT NOT NULL DEFAULT ''"
+            "ALTER TABLE Task ADD COLUMN description TEXT NOT NULL DEFAULT ''"
         )
     }
 }
