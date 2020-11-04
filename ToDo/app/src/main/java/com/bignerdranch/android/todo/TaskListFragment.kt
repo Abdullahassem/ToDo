@@ -3,9 +3,7 @@ package com.bignerdranch.android.todo
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -19,17 +17,18 @@ private const val TAG="TaskListFragment"
 
 class TaskListFragment :Fragment(){
 
+
+    private lateinit var taskRecycleView:RecyclerView
+    private var adapter:TaskAdapter?=TaskAdapter(emptyList())
+    private val taskListViewModel:TaskListViewModel by lazy{
+        ViewModelProviders.of(this).get(TaskListViewModel::class.java)
+    }
+    private var callbacks:Callbacks?=null
+
     interface Callbacks{
         fun onTaskSeleceted(taskId:UUID)
     }
 
-    private var callbacks:Callbacks?=null
-    private lateinit var taskRecycleView:RecyclerView
-    private var adapter:TaskAdapter?=null
-
-    private val taskListViewModel:TaskListViewModel by lazy{
-        ViewModelProviders.of(this).get(TaskListViewModel::class.java)
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -38,6 +37,7 @@ class TaskListFragment :Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
 
@@ -51,19 +51,54 @@ class TaskListFragment :Fragment(){
         taskRecycleView =
           view.findViewById(R.id.task_recycler_view)
         taskRecycleView.layoutManager = LinearLayoutManager(context)
+        taskRecycleView.adapter=adapter
 
-        updateUI()
 
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        taskListViewModel.taskListLiveData.observe(
+            viewLifecycleOwner,
+            androidx.lifecycle.Observer { tasks->
+                tasks?.let{
+                    updateUI(tasks)
+                }
+            }
+        )
+    }
     override fun onDetach() {
         super.onDetach()
         callbacks=null
     }
-private fun updateUI(){
-    val tasks=taskListViewModel.tasks
-    adapter= TaskAdapter(tasks)
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fragment_task_list, menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.new_task -> {
+                val task = Task()
+                taskListViewModel.addTask(task)
+                callbacks?.onTaskSeleceted(task.id)
+                true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+private fun updateUI(tasks:List<Task>){
+    adapter?.let{
+        it.tasks=tasks
+    } ?:run{
+        adapter=TaskAdapter(tasks)
+    }
     taskRecycleView.adapter=adapter
 }
 

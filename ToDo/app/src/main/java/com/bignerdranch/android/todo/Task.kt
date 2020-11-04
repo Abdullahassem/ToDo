@@ -1,13 +1,16 @@
 package com.bignerdranch.android.todo
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
-data class Task( val id: UUID = UUID.randomUUID(),
+@Entity
+data class Task(@PrimaryKey val id: UUID = UUID.randomUUID(),
                 var title: String = "",
                 var dueDate: Date = Date(),
                 var isCompleted: Boolean = false,
-                var creationDate:Date=Date()) {
-
-    val photoFileName
-        get() = "IMG_$id.jpg"
+                var creationDate:Date=Date(),
+                var description:String="") {
+//    val photoFileName
+//      get() = "IMG_$id.jpg"
 }
