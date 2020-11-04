@@ -2,7 +2,6 @@ package com.bignerdranch.android.todo
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
@@ -26,7 +25,7 @@ class TaskListFragment :Fragment(){
     private var callbacks:Callbacks?=null
 
     interface Callbacks{
-        fun onTaskSeleceted(taskId:UUID)
+        fun onTaskSeleceted(taskId: UUID)
     }
 
 
@@ -65,13 +64,14 @@ class TaskListFragment :Fragment(){
         super.onStart()
         taskListViewModel.taskListLiveData.observe(
             viewLifecycleOwner,
-            androidx.lifecycle.Observer { tasks->
-                tasks?.let{
+            androidx.lifecycle.Observer { tasks ->
+                tasks?.let {
                     updateUI(tasks)
                 }
             }
         )
     }
+
     override fun onDetach() {
         super.onDetach()
         callbacks=null
@@ -95,7 +95,13 @@ class TaskListFragment :Fragment(){
             else -> return super.onOptionsItemSelected(item)
         }
     }
-private fun updateUI(tasks:List<Task>){
+    val swipeHandler=object :SwipeToDeleteCallback(context){
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            adapter = taskRecycleView.adapter as TaskAdapter?
+            //adapter.
+        }
+    }
+private fun updateUI(tasks: List<Task>){
     adapter?.let{
         it.tasks=tasks
     } ?:run{
@@ -131,9 +137,9 @@ private fun updateUI(tasks:List<Task>){
             Toast.makeText(context, "${task.title} clicked!", Toast.LENGTH_SHORT)
                callbacks?.onTaskSeleceted(task.id)
         }
-    }    private inner class TaskAdapter(var tasks:List<Task>):RecyclerView.Adapter<TaskHolder>(){
+    }    private inner class TaskAdapter(var tasks: List<Task>):RecyclerView.Adapter<TaskHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskHolder {
-            val view= layoutInflater.inflate(R.layout.list_item_task,parent,false)
+            val view= layoutInflater.inflate(R.layout.list_item_task, parent, false)
             return TaskHolder(view)
         }
 
@@ -144,9 +150,10 @@ private fun updateUI(tasks:List<Task>){
 
         override fun getItemCount()=tasks.size
 
-        fun getTaskAtposition(position:Int){
-
+        fun getWordAtPosition(position: Int): Task? {
+            return tasks[position]
         }
+
 
     }
 

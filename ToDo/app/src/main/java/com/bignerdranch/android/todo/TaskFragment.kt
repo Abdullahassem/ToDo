@@ -22,6 +22,7 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import kotlinx.android.synthetic.main.fragment_task_list.*
 import java.io.File
 import java.util.*
 
@@ -40,6 +41,7 @@ class TaskFragment : Fragment() {
     private lateinit var isCompletedCheck: CheckBox
     private lateinit var description:EditText
     private lateinit var creationDateButton: Button
+    private lateinit var deleteButton:Button
     private val taskDetailViewModel:TaskDetailViewModel by lazy{
         ViewModelProviders.of(this).get(TaskDetailViewModel::class.java)
     }
@@ -64,6 +66,7 @@ class TaskFragment : Fragment() {
         isCompletedCheck = view.findViewById(R.id.task_completed) as CheckBox
         title = view.findViewById(R.id.task_title) as EditText
         description=view.findViewById(R.id.task_description)
+        deleteButton=view.findViewById(R.id.delete_task)
 //        dateButton.apply {
 //            text = task.dueDate.toString()
 //        }
@@ -128,6 +131,11 @@ class TaskFragment : Fragment() {
                 setTargetFragment(this@TaskFragment, REQUEST_DATE)
                 show(this@TaskFragment.requireFragmentManager(),DIALOG_DATE)
             }
+        }
+
+        deleteButton.setOnClickListener {
+            taskDetailViewModel.deleteTask(task)
+            requireActivity().onBackPressed()
         }
 
     }

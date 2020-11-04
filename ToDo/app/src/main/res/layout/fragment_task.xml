@@ -28,6 +28,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/task_description"/>
+    <Button
+        android:id="@+id/delete_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+
+        android:text="@string/delete_task" />
 
     <Button
         android:id="@+id/task_date"

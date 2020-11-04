@@ -22,8 +22,13 @@ class TaskDetailViewModel:ViewModel() {
         taskIdLiveData.value = taskId
     }
 
+
     fun saveTask(task: Task) {
         taskRepository.updateTask(task)
+    }
+
+    fun deleteTask(task: Task){
+        taskRepository.deleteTask(task)
     }
 
 
