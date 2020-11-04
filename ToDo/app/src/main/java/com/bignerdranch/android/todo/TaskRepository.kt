@@ -40,6 +40,13 @@ class TaskRepository private constructor(context: Context){
             taskDao.addTask(task)
         }
     }
+
+    fun deleteTask(task: Task){
+        executor.execute{
+            taskDao.deleteTask(task)
+        }
+
+    }
 //    fun getPhotoFile(task: Task): File = File(filesDir, task.photoFileName)
 
 

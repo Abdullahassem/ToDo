@@ -82,6 +82,8 @@ class TaskListFragment :Fragment(){
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_task_list, menu)
     }
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.new_task -> {
@@ -141,6 +143,10 @@ private fun updateUI(tasks:List<Task>){
         }
 
         override fun getItemCount()=tasks.size
+
+        fun getTaskAtposition(position:Int){
+
+        }
 
     }
 

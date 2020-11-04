@@ -38,6 +38,7 @@ class TaskFragment : Fragment() {
     private lateinit var title: EditText
     private lateinit var dateButton: Button
     private lateinit var isCompletedCheck: CheckBox
+    private lateinit var description:EditText
     private lateinit var creationDateButton: Button
     private val taskDetailViewModel:TaskDetailViewModel by lazy{
         ViewModelProviders.of(this).get(TaskDetailViewModel::class.java)
@@ -62,6 +63,7 @@ class TaskFragment : Fragment() {
         dateButton = view.findViewById(R.id.task_date) as Button
         isCompletedCheck = view.findViewById(R.id.task_completed) as CheckBox
         title = view.findViewById(R.id.task_title) as EditText
+        description=view.findViewById(R.id.task_description)
 //        dateButton.apply {
 //            text = task.dueDate.toString()
 //        }
@@ -144,6 +146,9 @@ class TaskFragment : Fragment() {
         isCompletedCheck.isChecked = task.isCompleted
     }
 
+    private fun getTaskDescription():String{
+        return ""
+    }
     companion object {
         fun newInstance(taskId: UUID): TaskFragment {
             val args = Bundle().apply {

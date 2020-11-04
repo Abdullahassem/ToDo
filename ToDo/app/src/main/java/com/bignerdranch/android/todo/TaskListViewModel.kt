@@ -14,4 +14,8 @@ private val taskRepository=TaskRepository.get()
 
     }
 
+    fun deleteTask(task:Task){
+        taskRepository.deleteTask(task)
+    }
+
     }
