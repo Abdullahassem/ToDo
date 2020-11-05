@@ -10,8 +10,4 @@ data class Task(@PrimaryKey val id: UUID = UUID.randomUUID(),
                 var dueDate: Date = Date(),
                 var isCompleted: Boolean = false,
                 var creationDate:Date=Date(),
-                var description:String="") {
-//    val photoFileName
-//      get() = "IMG_$id.jpg"
-}
-//
+                var description:String="")

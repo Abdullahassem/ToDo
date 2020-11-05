@@ -65,7 +65,7 @@ class TaskFragment : Fragment() {
         dateButton = view.findViewById(R.id.task_date) as Button
         isCompletedCheck = view.findViewById(R.id.task_completed) as CheckBox
         title = view.findViewById(R.id.task_title) as EditText
-        description=view.findViewById(R.id.task_description)
+        description=view.findViewById(R.id.task_description) as EditText
         deleteButton=view.findViewById(R.id.delete_task)
 //        dateButton.apply {
 //            text = task.dueDate.toString()
@@ -144,19 +144,20 @@ class TaskFragment : Fragment() {
         super.onStop()
         taskDetailViewModel.saveTask(task)
     }
-     fun onDateSelected(date: Date) {
+
+
+      fun onDateSelected(date: Date) {
         task.dueDate = date
         updateUI()
     }
     private fun updateUI() {
         title.setText(task.title)
         dateButton.text = task.dueDate.toString()
+        description.setText(task.description)
         isCompletedCheck.isChecked = task.isCompleted
     }
 
-    private fun getTaskDescription():String{
-        return ""
-    }
+
     companion object {
         fun newInstance(taskId: UUID): TaskFragment {
             val args = Bundle().apply {

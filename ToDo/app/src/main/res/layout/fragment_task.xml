@@ -47,6 +47,6 @@
         android:id="@+id/task_completed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/task_completed_label"/>
+        android:text="Task accomplished!"/>
 
 </LinearLayout>
