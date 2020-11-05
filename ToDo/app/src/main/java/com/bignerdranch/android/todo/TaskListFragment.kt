@@ -98,7 +98,6 @@ class TaskListFragment :Fragment(){
     val swipeHandler=object :SwipeToDeleteCallback(context){
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
             adapter = taskRecycleView.adapter as TaskAdapter?
-            //adapter.
         }
     }
 private fun updateUI(tasks: List<Task>){
@@ -150,9 +149,7 @@ private fun updateUI(tasks: List<Task>){
 
         override fun getItemCount()=tasks.size
 
-        fun getWordAtPosition(position: Int): Task? {
-            return tasks[position]
-        }
+
 
 
     }

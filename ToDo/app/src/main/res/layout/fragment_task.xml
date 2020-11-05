@@ -5,11 +5,11 @@
     android:layout_margin="16dp">
 
 
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/task_title_label"/>
+<!--    <TextView-->
+<!--        style="?android:listSeparatorTextViewStyle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/task_title_label"/>-->
 
     <EditText
         android:id="@+id/task_title"
@@ -17,17 +17,52 @@
         android:layout_height="wrap_content"
         android:hint="add a title" />
 
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/task_details_label"/>
+
 
     <EditText
         android:id="@+id/task_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/task_description"/>
+
+
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_details_label"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Creation date:"
+        android:padding="20dp"
+        android:textSize="15dp"/>
+
+
+    <Button
+        android:id="@+id/task_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        tools:text="Date" />
+
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_details_label"/>
+
+
+    <CheckBox
+        android:id="@+id/task_completed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Task accomplished!"
+        />
+
     <Button
         android:id="@+id/delete_task"
         android:layout_width="match_parent"
@@ -35,18 +70,5 @@
         android:padding="20dp"
 
         android:text="@string/delete_task" />
-
-    <Button
-        android:id="@+id/task_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        tools:text="Date" />
-
-    <CheckBox
-        android:id="@+id/task_completed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Task accomplished!"/>
 
 </LinearLayout>

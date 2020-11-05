@@ -40,7 +40,7 @@ class TaskFragment : Fragment() {
     private lateinit var dateButton: Button
     private lateinit var isCompletedCheck: CheckBox
     private lateinit var description:EditText
-    private lateinit var creationDateButton: Button
+    private lateinit var dueDateButton: Button
     private lateinit var deleteButton:Button
     private val taskDetailViewModel:TaskDetailViewModel by lazy{
         ViewModelProviders.of(this).get(TaskDetailViewModel::class.java)
@@ -149,12 +149,12 @@ class TaskFragment : Fragment() {
 
         }
 
-        dateButton.setOnClickListener {
-            DatePickerFragment.newInstance(task.dueDate).apply{
-                setTargetFragment(this@TaskFragment, REQUEST_DATE)
-                show(this@TaskFragment.requireFragmentManager(),DIALOG_DATE)
-            }
-        }
+//        dateButton.setOnClickListener {
+//            DatePickerFragment.newInstance(task.dueDate).apply{
+//                setTargetFragment(this@TaskFragment, REQUEST_DATE)
+//                show(this@TaskFragment.requireFragmentManager(),DIALOG_DATE)
+//            }
+//        }
 
         deleteButton.setOnClickListener {
             taskDetailViewModel.deleteTask(task)
