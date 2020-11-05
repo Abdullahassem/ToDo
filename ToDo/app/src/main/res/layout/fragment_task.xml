@@ -47,6 +47,20 @@
         android:layout_height="wrap_content"
         android:clickable="false"
         tools:text="Date" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set due date:"
+        android:padding="20dp"
+        android:textSize="15dp"/>
+
+    <Button
+        android:id="@+id/task_dueDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+        />
 
 
     <TextView

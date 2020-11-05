@@ -63,10 +63,13 @@ class TaskFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_task, container, false)
         dateButton = view.findViewById(R.id.task_date) as Button
+        dueDateButton=view.findViewById(R.id.task_dueDate)as Button
         isCompletedCheck = view.findViewById(R.id.task_completed) as CheckBox
         title = view.findViewById(R.id.task_title) as EditText
         description=view.findViewById(R.id.task_description) as EditText
         deleteButton=view.findViewById(R.id.delete_task)
+
+
 //        dateButton.apply {
 //            text = task.dueDate.toString()
 //        }
@@ -147,6 +150,17 @@ class TaskFragment : Fragment() {
                 task.isCompleted = isChecked
             }
 
+        }
+
+        dueDateButton.setOnClickListener {
+            DatePickerFragment.newInstance(task.dueDate).apply {
+                setTargetFragment(this@TaskFragment, REQUEST_DATE)
+                show(this@TaskFragment.requireFragmentManager(), DIALOG_DATE)
+            }
+        }
+
+        dueDateButton.apply {
+            text=task.dueDate.toString()
         }
 
 //        dateButton.setOnClickListener {
