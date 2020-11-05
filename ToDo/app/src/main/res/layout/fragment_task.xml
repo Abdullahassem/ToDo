@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent"
-    android:layout_margin="16dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical">
 
 
-<!--    <TextView-->
-<!--        style="?android:listSeparatorTextViewStyle"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/task_title_label"/>-->
+    <!--    <TextView-->
+    <!--        style="?android:listSeparatorTextViewStyle"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="@string/task_title_label"/>-->
 
     <EditText
         android:id="@+id/task_title"
@@ -18,27 +20,25 @@
         android:hint="add a title" />
 
 
-
     <EditText
         android:id="@+id/task_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/task_description"/>
-
+        android:hint="@string/task_description" />
 
 
     <TextView
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/task_details_label"/>
+        android:text="@string/task_details_label" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Creation date:"
         android:padding="20dp"
-        android:textSize="15dp"/>
+        android:text="Creation date:"
+        android:textSize="15dp" />
 
 
     <Button
@@ -47,12 +47,13 @@
         android:layout_height="wrap_content"
         android:clickable="false"
         tools:text="Date" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Set due date:"
         android:padding="20dp"
-        android:textSize="15dp"/>
+        android:text="Set due date:"
+        android:textSize="15dp" />
 
     <Button
         android:id="@+id/task_dueDate"
@@ -67,15 +68,14 @@
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/task_details_label"/>
+        android:text="@string/task_details_label" />
 
 
     <CheckBox
         android:id="@+id/task_completed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Task accomplished!"
-        />
+        android:text="Task accomplished!" />
 
     <Button
         android:id="@+id/delete_task"

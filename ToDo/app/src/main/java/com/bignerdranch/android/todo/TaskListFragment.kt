@@ -12,26 +12,26 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-private const val TAG="TaskListFragment"
+private const val TAG = "TaskListFragment"
 
-class TaskListFragment :Fragment(){
+class TaskListFragment : Fragment() {
 
 
-    private lateinit var taskRecycleView:RecyclerView
-    private var adapter:TaskAdapter?=TaskAdapter(emptyList())
-    private val taskListViewModel:TaskListViewModel by lazy{
+    private lateinit var taskRecycleView: RecyclerView
+    private var adapter: TaskAdapter? = TaskAdapter(emptyList())
+    private val taskListViewModel: TaskListViewModel by lazy {
         ViewModelProviders.of(this).get(TaskListViewModel::class.java)
     }
-    private var callbacks:Callbacks?=null
+    private var callbacks: Callbacks? = null
 
-    interface Callbacks{
+    interface Callbacks {
         fun onTaskSeleceted(taskId: UUID)
     }
 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        callbacks=context as Callbacks?
+        callbacks = context as Callbacks?
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,9 +48,9 @@ class TaskListFragment :Fragment(){
         val view = inflater.inflate(R.layout.fragment_task_list, container, false)
 
         taskRecycleView =
-          view.findViewById(R.id.task_recycler_view)
+            view.findViewById(R.id.task_recycler_view)
         taskRecycleView.layoutManager = LinearLayoutManager(context)
-        taskRecycleView.adapter=adapter
+        taskRecycleView.adapter = adapter
 
 
         return view
@@ -74,7 +74,7 @@ class TaskListFragment :Fragment(){
 
     override fun onDetach() {
         super.onDetach()
-        callbacks=null
+        callbacks = null
     }
 
 
@@ -95,21 +95,18 @@ class TaskListFragment :Fragment(){
             else -> return super.onOptionsItemSelected(item)
         }
     }
-    val swipeHandler=object :SwipeToDeleteCallback(context){
-        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            adapter = taskRecycleView.adapter as TaskAdapter?
-        }
-    }
-private fun updateUI(tasks: List<Task>){
-    adapter?.let{
-        it.tasks=tasks
-    } ?:run{
-        adapter=TaskAdapter(tasks)
-    }
-    taskRecycleView.adapter=adapter
-}
 
-    private inner class TaskHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener {
+    private fun updateUI(tasks: List<Task>) {
+        adapter?.let {
+            it.tasks = tasks
+        } ?: run {
+            adapter = TaskAdapter(tasks)
+        }
+        taskRecycleView.adapter = adapter
+    }
+
+    private inner class TaskHolder(view: View) : RecyclerView.ViewHolder(view),
+        View.OnClickListener {
 
         private lateinit var task: Task
 
@@ -134,11 +131,13 @@ private fun updateUI(tasks: List<Task>){
 
         override fun onClick(v: View) {
             Toast.makeText(context, "${task.title} clicked!", Toast.LENGTH_SHORT)
-               callbacks?.onTaskSeleceted(task.id)
+            callbacks?.onTaskSeleceted(task.id)
         }
-    }    private inner class TaskAdapter(var tasks: List<Task>):RecyclerView.Adapter<TaskHolder>(){
+    }
+
+    private inner class TaskAdapter(var tasks: List<Task>) : RecyclerView.Adapter<TaskHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskHolder {
-            val view= layoutInflater.inflate(R.layout.list_item_task, parent, false)
+            val view = layoutInflater.inflate(R.layout.list_item_task, parent, false)
             return TaskHolder(view)
         }
 
@@ -147,15 +146,13 @@ private fun updateUI(tasks: List<Task>){
             holder.bind(task)
         }
 
-        override fun getItemCount()=tasks.size
-
-
+        override fun getItemCount() = tasks.size
 
 
     }
 
-    companion object{
-        fun newInstance(): TaskListFragment{
+    companion object {
+        fun newInstance(): TaskListFragment {
             return TaskListFragment()
         }
     }
