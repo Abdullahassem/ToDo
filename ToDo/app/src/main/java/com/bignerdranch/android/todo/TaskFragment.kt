@@ -117,8 +117,31 @@ class TaskFragment : Fragment() {
             override fun afterTextChanged(sequence: Editable?) {
             }
         }
+        val descriptionWatcher = object : TextWatcher {
+
+            override fun beforeTextChanged(
+                sequence: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                sequence: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+                task.description = sequence.toString()
+            }
+
+            override fun afterTextChanged(sequence: Editable?) {
+            }
+        }
 
         title.addTextChangedListener(titleWatcher)
+        description.addTextChangedListener(descriptionWatcher)
         isCompletedCheck.apply {
             setOnCheckedChangeListener { _, isChecked ->
                 task.isCompleted = isChecked
