@@ -33,7 +33,7 @@ private const val REQUEST_DATE = 0
 
 
 
-class TaskFragment : Fragment() {
+class TaskFragment : Fragment(), DatePickerFragment.Callbacks {
 
     private lateinit var task: Task
     private lateinit var title: EditText
@@ -183,7 +183,7 @@ class TaskFragment : Fragment() {
     }
 
 
-      fun onDateSelected(date: Date) {
+      override fun onDateSelected(date: Date) {
         task.dueDate = date
         updateUI()
     }
